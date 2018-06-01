@@ -1,5 +1,5 @@
-[mysql57-community]
-name=MySQL 8.0 Community Server
+[mysql-community]
+name=MySQL Community Server
 baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/
 enabled=1
 gpgcheck=1

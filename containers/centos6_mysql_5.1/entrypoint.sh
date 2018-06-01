@@ -25,4 +25,5 @@ cp /holland/config/providers/* /etc/holland/providers/
 
 mysql -V
 holland mc --name mysqldump mysqldump
+holland bk mysqldump --dry-run
 holland bk mysqldump

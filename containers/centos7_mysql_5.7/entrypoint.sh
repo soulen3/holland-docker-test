@@ -24,5 +24,5 @@ cp /holland/config/holland.conf /etc/holland/
 cp /holland/config/providers/* /etc/holland/providers/
 holland mc --name mysqldump mysqldump
 #holland mc --name xtrabackup xtrabackup
-holland bk mysqldump
-#holland bk xtrabackup
+holland bk mysqldump --dry-run
+#holland bk xtrabackup --dry-run
