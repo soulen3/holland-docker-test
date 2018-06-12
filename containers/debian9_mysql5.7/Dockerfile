@@ -1,4 +1,4 @@
-From ubuntu:18.04
+From debian:stretch
 
 RUN apt-get update
 RUN apt-get --yes install mysql-server git python3-setuptools gcc

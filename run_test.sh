@@ -1,6 +1,6 @@
 #!/bin/bash
-FORK="https://github.com/soulen3/holland.git"
-BRANCH="python3"
+FORK="https://github.com/holland-backup/holland.git"
+BRANCH="master"
 
 if [ $1 ]; then
     docker run --env FORK=$FORK --env BRANCH=$BRANCH $1
