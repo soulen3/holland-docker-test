@@ -9,11 +9,11 @@ mysqld --initialize-insecure --user=mysql 2>>/dev/null >>/dev/null
 mkdir -p /var/run/mysqld
 chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
 mysqld_safe --user=mysql 2>>/dev/null >>/dev/null &
-sleep 5
+sleep 20
 
 
 cd /test_db
-mysql < employees.sql 2>&1 >>/dev/null
+mysql < employees.sql 2>>/dev/null >>/dev/null
 
 cd /
 git clone $FORK 2>>/dev/null >>/dev/null
@@ -32,7 +32,23 @@ mkdir -p /etc/holland/providers /etc/holland/backupsets /var/log/holland /var/sp
 cp /holland/config/holland.conf /etc/holland/
 cp /holland/config/providers/* /etc/holland/providers/
 
-mysql -V
-holland mc --name mysqldump mysqldump
-holland bk mysqldump --dry-run
-holland bk mysqldump
+CMDS=(
+"holland mc --name mysqldump mysqldump"
+"holland bk mysqldump --dry-run"
+"holland bk mysqldump"
+)
+
+for command in "${CMDS[@]}"
+do
+    $command 2>>/dev/null >>/dev/null
+    if [ ! $? ]
+    then
+        echo "$NAME Failed: \"$command\""
+    fi
+done
+
+if [[ $DEBUG == 'True' ]]
+then
+    echo $NAME
+    cat /var/log/holland/holland.log
+fi

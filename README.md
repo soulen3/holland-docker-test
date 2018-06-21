@@ -1,2 +1,2 @@
 # holland-docker-test
-Setup test for holland using docker
+Use's docker to test holland backup tool in multiple environments.
