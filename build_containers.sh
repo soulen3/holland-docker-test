@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for dir in `ls containers`
+for dir in containers/*
 do
  docker build -t $dir containers/$dir
 done
