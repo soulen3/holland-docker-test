@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+chown -R mysql:mysql  /var/log/mariadb
+touch /var/log/mariadb/mariadb.log
+chown -R mysql:mysql /var/log/mariadb
+
 rm -rf /var/lib/mysql/*
 mysql_install_db 2>>/dev/null >>/dev/null
 chown -R mysql:mysql /var/lib/mysql
@@ -35,7 +39,7 @@ CMDS=(
 for command in "${CMDS[@]}"
 do
     $command 2>>/dev/null >>/dev/null
-    if [ ! $? ]
+    if [ $? -ne  0 ]
     then
         echo "$NAME Failed: \"$command\""
     fi

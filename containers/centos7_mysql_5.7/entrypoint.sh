@@ -25,17 +25,14 @@ cp /holland/config/providers/* /etc/holland/providers/
 
 CMDS=(
 "holland mc --name mysqldump mysqldump"
-"holland mc --name xtrabackup xtrabackup"
 "holland bk mysqldump --dry-run"
-"holland bk xtrabackup --dry-run"
 "holland bk mysqldump"
-"holland bk xtrabackup"
 )
 
 for command in "${CMDS[@]}"
 do
     $command 2>>/dev/null >>/dev/null
-    if [ ! $? ]
+    if [ $? -ne  0 ]
     then
         echo "$NAME Failed: \"$command\""
     fi

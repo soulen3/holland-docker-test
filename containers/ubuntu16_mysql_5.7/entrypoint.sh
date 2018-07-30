@@ -42,7 +42,7 @@ CMDS=(
 for command in "${CMDS[@]}"
 do
     $command 2>>/dev/null >>/dev/null
-    if [ ! $? ]
+    if [ $? -ne  0 ]
     then
         echo "$NAME Failed: \"$command\""
     fi
