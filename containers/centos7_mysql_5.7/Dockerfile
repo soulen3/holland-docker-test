@@ -1,6 +1,7 @@
 From centos:7
 
-RUN yum install -y wget git python-setuptools gcc python-devel
+RUN yum install -y epel-release
+RUN yum install -y wget git python-setuptools gcc python-devel python2-mock
 ADD ./mysql.repo /etc/yum.repos.d/mysql.repo
 RUN wget -O /tmp/RPM-GPG-KEY-mysql http://repo.mysql.com/RPM-GPG-KEY-mysql
 RUN rpm --import  /tmp/RPM-GPG-KEY-mysql
