@@ -1,6 +1,6 @@
 #!/bin/bash
 FORK="https://github.com/holland-backup/holland.git"
-BRANCH="master"
+BRANCH="devel"
 DEBUG="False"
 
 if [ $1 ]; then

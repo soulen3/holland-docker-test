@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 
-touch /var/log/mariadb/mariadb.log 
-chown -R mysql:mysql /var/log/mariadb
-
 rm -rf /var/lib/mysql/*
-mysql_install_db 2>>/dev/null >>/dev/null
-chown -R mysql:mysql /var/lib/mysql
-mysqld_safe --datadir='/var/lib/mysql' --user=mysql 2>>/dev/null >>/dev/null & 
+mysqld --initialize-insecure --user=mysql 2>>/dev/null >>/dev/null
+chown -R mysql:mysql /var/lib/mysql 2>>/dev/null >>/dev/null
+mysqld --user=mysql --explicit_defaults_for_timestamp 2>>/dev/null >>/dev/null &
 sleep 20
 
+mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY ''"
 cd /test_db
 mysql < employees.sql 2>&1 >>/dev/null
 
@@ -28,11 +26,8 @@ cp /holland/config/providers/* /etc/holland/providers/
 
 CMDS=(
 "holland mc --name mysqldump mysqldump"
-"holland mc --name xtrabackup xtrabackup"
 "holland bk mysqldump --dry-run"
-"holland bk xtrabackup --dry-run"
 "holland bk mysqldump"
-"holland bk xtrabackup"
 )
 
 FAIL=0

@@ -30,12 +30,14 @@ CMDS=(
 "holland bk mysqldump"
 )
 
+FAIL=0
 for command in "${CMDS[@]}"
 do
     $command 2>>/dev/null >>/dev/null
     if [ $? -ne  0 ]
     then
         echo "$NAME Failed: \"$command\""
+        FAIL=1
     fi
 done
 
@@ -44,3 +46,5 @@ then
     echo $NAME
     cat /var/log/holland/holland.log
 fi
+
+exit $FAIL

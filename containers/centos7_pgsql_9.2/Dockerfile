@@ -1,6 +1,6 @@
 FROM centos:7
 
-RUN yum install -y postgresql-server python-setuptools python-psycopg2 git wget python-configobj
+RUN yum install -y postgresql-server python-setuptools python-psycopg2 git wget python-configobj python2-subprocess32
 ADD ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 CMD /entrypoint.sh
