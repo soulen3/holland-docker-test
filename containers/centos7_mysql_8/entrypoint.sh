@@ -28,6 +28,9 @@ CMDS=(
 "holland mc --name mysqldump mysqldump"
 "holland bk mysqldump --dry-run"
 "holland bk mysqldump"
+"holland mc --name xtrabackup xtrabackup"
+"holland bk xtrabackup --dry-run"
+"holland bk xtrabackup"
 )
 
 for command in "${CMDS[@]}"
