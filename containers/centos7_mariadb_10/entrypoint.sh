@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+mkdir /var/log/mariadb
 touch /var/log/mariadb/mariadb.log 
 chown -R mysql:mysql /var/log/mariadb
 
@@ -28,11 +29,11 @@ cp /holland/config/providers/* /etc/holland/providers/
 
 CMDS=(
 "holland mc --name mysqldump mysqldump"
-"holland mc --name xtrabackup xtrabackup"
+"holland mc --name mariabackup mariabackup"
 "holland bk mysqldump --dry-run"
-"holland bk xtrabackup --dry-run"
+"holland bk mariabackup --dry-run"
 "holland bk mysqldump"
-"holland bk xtrabackup"
+"holland bk mariabackup"
 )
 
 FAIL=0
