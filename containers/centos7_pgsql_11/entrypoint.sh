@@ -11,13 +11,13 @@ su -c '/usr/pgsql-11/bin/psql -c "CREATE USER root WITH SUPERUSER"' postgres 2>>
 git clone $FORK /holland 2>>/dev/null >>/dev/null
 cd /holland 2>>/dev/null >>/dev/null
 git checkout $BRANCH 2>>/dev/null >>/dev/null
-python setup.py install 2>>/dev/null >>/dev/null
+python3 setup.py install 2>>/dev/null >>/dev/null
 
 # Install Holland pgdump plugin
 cd /holland/plugins/holland.lib.common 2>>/dev/null >>/dev/null
-python setup.py install 2>>/dev/null >>/dev/null
+python3 setup.py install 2>>/dev/null >>/dev/null
 cd /holland/plugins/holland.backup.pgdump 2>>/dev/null >>/dev/null
-python setup.py install  2>>/dev/null >>/dev/null
+python3 setup.py install  2>>/dev/null >>/dev/null
 
 # Prep filesystem for holland installation
 mkdir -p /etc/holland/{backupsets,providers} /var/log/holland /var/spool/holland 2>>/dev/null >>/dev/null

@@ -14,11 +14,11 @@ cd /
 git clone $FORK 2>>/dev/null >>/dev/null
 cd /holland
 git checkout $BRANCH 2>>/dev/null >>/dev/null
-python setup.py install 2>>/dev/null >>/dev/null
+python3 setup.py install 2>>/dev/null >>/dev/null
 for i in `ls -d /holland/plugins/holland.*`
 do
     cd ${i}
-    python setup.py install 2>>/dev/null >>/dev/null
+    python3 setup.py install 2>>/dev/null >>/dev/null
 done
 mkdir -p /etc/holland/providers /etc/holland/backupsets /var/log/holland /var/spool/holland
 cp /holland/config/holland.conf /etc/holland/
