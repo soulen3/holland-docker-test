@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+mkdir /var/log/mariadb
+touch /var/log/mariadb/mariadb.log 
+chown -R mysql:mysql /var/log/mariadb
+
 rm -rf /var/lib/mysql/*
 mysql_install_db --force 2>>/dev/null >>/dev/null
 chown -R mysql:mysql /var/lib/mysql
@@ -25,10 +29,10 @@ cp /holland/config/providers/* /etc/holland/providers/
 
 CMDS=(
 "holland mc --name mysqldump mysqldump"
-"holland bk mysqldump --dry-run"
-"holland bk mysqldump"
 "holland mc --name mariabackup mariabackup"
+"holland bk mysqldump --dry-run"
 "holland bk mariabackup --dry-run"
+"holland bk mysqldump"
 "holland bk mariabackup"
 )
 
